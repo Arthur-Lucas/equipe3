@@ -11,6 +11,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        <script src="https://cdn.jsdelivr.net/npm/p5@1.9.2/lib/p5.js"></script>
+      </head>
       <body className={inter.className}>{children}</body>
     </html>
   );
