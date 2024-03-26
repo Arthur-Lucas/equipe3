@@ -170,19 +170,6 @@ export default function Page() {
     const centerY = window.innerHeight / 2;
     let minDistance = Infinity;
 
-    // nodeGridDiv.forEach((div) => {
-    //   const rect = div.getBoundingClientRect();
-    //   console.log(rect);
-    //   const distance = Math.sqrt(
-    //     Math.pow(rect.left + rect.width / 2 - centerX, 2) +
-    //       Math.pow(rect.top + rect.height / 2 - centerY, 2)
-    //   );
-    //   if (distance < minDistance) {
-    //     minDistance = distance;
-    //     setClosestDiv(div);
-    //   }
-    // });
-
     const handleMouseDown = (event) => {
       document.body.style.cursor = "move";
       startX = event.clientX;
@@ -199,6 +186,20 @@ export default function Page() {
         y: "+=" + deltaY,
         duration: 0.5,
         onComplete: () => {
+          nodeGridDiv.forEach((div) => {
+            const rect = div.getBoundingClientRect();
+            const distance = Math.sqrt(
+              Math.pow(rect.left + rect.width / 2 - centerX, 2) +
+                Math.pow(rect.top + rect.height / 2 - centerY, 2)
+            );
+
+            if (distance < minDistance) {
+              minDistance = distance;
+              setClosestDiv(div);
+              console.log(div);
+            }
+          });
+          console.log(closestDiv);
           if (closestDiv) {
             // console;
             const rect = closestDiv.getBoundingClientRect();
@@ -223,7 +224,7 @@ export default function Page() {
     return () => {
       grid.removeEventListener("mousedown", handleMouseDown);
     };
-  }, []);
+  }, [nodeGridDiv]);
 
   return (
     <main className={styles.main} id = "main">
