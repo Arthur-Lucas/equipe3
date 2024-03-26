@@ -1,15 +1,10 @@
-/* * {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-} */
-
 .main {
   background-color: black;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  min-height: 100vh;
   max-height: 100vh;
   position: relative;
 }
@@ -30,7 +25,7 @@
   transform: translate(-50%, -50%) rotate(-30deg);
 }
 
-.grid-cell {
+.grid_cell {
   background-color: grey;
   border: 2px red solid;
   display: flex;

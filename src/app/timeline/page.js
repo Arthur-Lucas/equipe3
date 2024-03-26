@@ -5,14 +5,6 @@ import { useEffect, useRef, useState } from "react";
 import styles from "./page.module.css";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
-// import GridItem from "./model/Grid.json"; // Créez ce composant pour afficher chaque élément de la grille
-
-// const fs = require("fs");
-// const jsonData = fs.readFileSync("./src/app/model/Grid.json", "utf-8");
-
-// Convertir le JSON en objet JavaScript
-// const jsonObject = JSON.parse(jsonData);
-// console.log(fs);
 
 export default function Page() {
   const [gridData, setGridData] = useState({ grid: [] });
