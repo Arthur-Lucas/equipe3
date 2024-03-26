@@ -11,7 +11,9 @@ export default function Page() {
 
   const [gridData, setGridData] = useState({ grid: [] });
   const [closestDiv, setClosestDiv] = useState(null);
-  const [nodeGridDiv, setNodeGridDiv] = useState(null);
+  const [nodeGridDiv, setNodeGridDiv] = useState([]);
+
+  const [bEmpty, setBEmpty] = useState(true);
   useEffect(() => {
     async function fetchData() {
       const JSONData = {
@@ -33,14 +35,15 @@ export default function Page() {
   }, []);
 
   useEffect(() => {
-    setNodeGridDiv(gridRef.current.querySelectorAll(`.${styles.grid_cell}`));
-    console.log(
-      gridRef.current.querySelectorAll(`.${styles.grid_cell}`),
-      nodeGridDiv
-    );
-  }, []);
-
-  useEffect(() => {
+    // Cet effet sera déclenché chaque fois que nodeGridDiv changera
+    if (nodeGridDiv.length === 0) {
+      // Si nodeGridDiv est vide, mettez à jour nodeGridDiv avec les divs de la grille
+      const divs = gridRef.current.querySelectorAll(`.${styles.grid_cell}`);
+      setNodeGridDiv(Array.from(divs)); // Convertissez NodeList en tableau
+      setBEmpty(false);
+    } else {
+      setBEmpty(true);
+    }
     const grid = gridRef.current;
     let startX = 0;
     let startY = 0;
@@ -49,19 +52,6 @@ export default function Page() {
     const centerX = window.innerWidth / 2;
     const centerY = window.innerHeight / 2;
     let minDistance = Infinity;
-
-    // nodeGridDiv.forEach((div) => {
-    //   const rect = div.getBoundingClientRect();
-    //   console.log(rect);
-    //   const distance = Math.sqrt(
-    //     Math.pow(rect.left + rect.width / 2 - centerX, 2) +
-    //       Math.pow(rect.top + rect.height / 2 - centerY, 2)
-    //   );
-    //   if (distance < minDistance) {
-    //     minDistance = distance;
-    //     setClosestDiv(div);
-    //   }
-    // });
 
     const handleMouseDown = (event) => {
       document.body.style.cursor = "move";
@@ -79,6 +69,20 @@ export default function Page() {
         y: "+=" + deltaY,
         duration: 0.5,
         onComplete: () => {
+          nodeGridDiv.forEach((div) => {
+            const rect = div.getBoundingClientRect();
+            const distance = Math.sqrt(
+              Math.pow(rect.left + rect.width / 2 - centerX, 2) +
+                Math.pow(rect.top + rect.height / 2 - centerY, 2)
+            );
+
+            if (distance < minDistance) {
+              minDistance = distance;
+              setClosestDiv(div);
+              console.log(div);
+            }
+          });
+          console.log(closestDiv);
           if (closestDiv) {
             // console;
             const rect = closestDiv.getBoundingClientRect();
@@ -103,7 +107,7 @@ export default function Page() {
     return () => {
       grid.removeEventListener("mousedown", handleMouseDown);
     };
-  }, []);
+  }, [nodeGridDiv]);
 
   return (
     <main className={styles.main}>
