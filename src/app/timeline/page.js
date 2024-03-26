@@ -6,6 +6,7 @@ import { gsap } from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import clsx from "clsx";
 gsap.registerPlugin(ScrollTrigger);
+import { useGSAP } from "@gsap/react";
 
 export default function Page() {
   const gridRef1 = useRef(null);
