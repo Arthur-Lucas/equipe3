@@ -1,0 +1,40 @@
+.background {
+    background-image: url("../../../public/img/woodstock/hendrix.png");
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
+    height: 100vh; 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1; 
+}
+
+.content {
+    position: relative;
+    z-index: 2;
+}
+
+.twoColumns {
+    display: flex;
+}
+
+.column {
+    flex: 1;
+}
+
+.image {
+    width: 50%;
+    height: 200px; 
+    background-image: url('../../../public/img/woodstock/hendrix.png');
+    background-size: cover;
+    background-position: center;
+    border-radius: 8px;
+}
+
+.title {
+    font-size: 24px;
+}
