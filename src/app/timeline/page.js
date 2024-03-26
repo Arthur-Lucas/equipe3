@@ -35,6 +35,25 @@ export default function Page() {
     let startX = 0;
     let startY = 0;
 
+    // ancrer div au centre de la page
+    const divs = document.querySelectorAll(".grid_cell");
+    const centerX = window.innerWidth / 2;
+    const centerY = window.innerHeight / 2;
+    let closestDiv = null;
+    let minDistance = Infinity;
+
+    divs.forEach((div) => {
+      const rect = div.getBoundingClientRect();
+      const distance = Math.sqrt(
+        Math.pow(rect.left + rect.width / 2 - centerX, 2) +
+          Math.pow(rect.top + rect.height / 2 - centerY, 2)
+      );
+      if (distance < minDistance) {
+        minDistance = distance;
+        closestDiv = div;
+      }
+    });
+
     const handleMouseDown = (event) => {
       document.body.style.cursor = "move";
       startX = event.clientX;
@@ -46,7 +65,19 @@ export default function Page() {
     const handleMouseMove = (event) => {
       const deltaX = (event.clientX - startX) * 15;
       const deltaY = (event.clientY - startY) * 15;
-      gsap.to(grid, { x: "+=" + deltaX, y: "+=" + deltaY, duration: 0.5 });
+      gsap.to(grid, {
+        x: "+=" + deltaX,
+        y: "+=" + deltaY,
+        duration: 0.5,
+        onComplete: () => {
+          if (closestDiv) {
+            const rect = closestDiv.getBoundingClientRect();
+            const offsetX = centerX - (rect.left + rect.width / 2);
+            const offsetY = centerY - (rect.top + rect.height / 2);
+            gsap.to(closestDiv, { x: offsetX, y: offsetY, duration: 0.5 });
+          }
+        },
+      });
       startX = event.clientX;
       startY = event.clientY;
     };
