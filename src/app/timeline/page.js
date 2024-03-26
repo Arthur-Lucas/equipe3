@@ -10,6 +10,8 @@ export default function Page() {
   const gridRef = useRef(null);
 
   const [gridData, setGridData] = useState({ grid: [] });
+  const [closestDiv, setClosestDiv] = useState(null);
+  const [nodeGridDiv, setNodeGridDiv] = useState(null);
   useEffect(() => {
     async function fetchData() {
       const JSONData = {
@@ -31,28 +33,35 @@ export default function Page() {
   }, []);
 
   useEffect(() => {
+    setNodeGridDiv(gridRef.current.querySelectorAll(`.${styles.grid_cell}`));
+    console.log(
+      gridRef.current.querySelectorAll(`.${styles.grid_cell}`),
+      nodeGridDiv
+    );
+  }, []);
+
+  useEffect(() => {
     const grid = gridRef.current;
     let startX = 0;
     let startY = 0;
 
     // ancrer div au centre de la page
-    const divs = document.querySelectorAll(".grid_cell");
     const centerX = window.innerWidth / 2;
     const centerY = window.innerHeight / 2;
-    let closestDiv = null;
     let minDistance = Infinity;
 
-    divs.forEach((div) => {
-      const rect = div.getBoundingClientRect();
-      const distance = Math.sqrt(
-        Math.pow(rect.left + rect.width / 2 - centerX, 2) +
-          Math.pow(rect.top + rect.height / 2 - centerY, 2)
-      );
-      if (distance < minDistance) {
-        minDistance = distance;
-        closestDiv = div;
-      }
-    });
+    // nodeGridDiv.forEach((div) => {
+    //   const rect = div.getBoundingClientRect();
+    //   console.log(rect);
+    //   const distance = Math.sqrt(
+    //     Math.pow(rect.left + rect.width / 2 - centerX, 2) +
+    //       Math.pow(rect.top + rect.height / 2 - centerY, 2)
+    //   );
+    //   if (distance < minDistance) {
+    //     minDistance = distance;
+    //     setClosestDiv(div);
+    //   }
+    // });
 
     const handleMouseDown = (event) => {
       document.body.style.cursor = "move";
@@ -63,14 +72,15 @@ export default function Page() {
     };
 
     const handleMouseMove = (event) => {
-      const deltaX = (event.clientX - startX) * 15;
-      const deltaY = (event.clientY - startY) * 15;
+      const deltaX = (event.clientX - startX) * 10;
+      const deltaY = (event.clientY - startY) * 10;
       gsap.to(grid, {
         x: "+=" + deltaX,
         y: "+=" + deltaY,
         duration: 0.5,
         onComplete: () => {
           if (closestDiv) {
+            // console;
             const rect = closestDiv.getBoundingClientRect();
             const offsetX = centerX - (rect.left + rect.width / 2);
             const offsetY = centerY - (rect.top + rect.height / 2);
