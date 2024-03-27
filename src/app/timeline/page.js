@@ -7,7 +7,7 @@ import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 
 export default function Page() {
-  const gridRef = useRef(null);
+  const mainRef = useRef(null); 
 
   const [gridData, setGridData] = useState({ grid: [] });
   const [closestDiv, setClosestDiv] = useState(null);
@@ -64,7 +64,7 @@ export default function Page() {
     const handleMouseMove = (event) => {
       const deltaX = (event.clientX - startX) * 10;
       const deltaY = (event.clientY - startY) * 10;
-      gsap.to(grid, {
+      gsap.to(mainRef.current, {
         x: "+=" + deltaX,
         y: "+=" + deltaY,
         duration: 0.5,
@@ -102,22 +102,80 @@ export default function Page() {
       document.removeEventListener("mouseup", handleMouseUp);
     };
 
-    grid.addEventListener("mousedown", handleMouseDown);
+    main.addEventListener("mousedown", handleMouseDown);
 
     return () => {
-      grid.removeEventListener("mousedown", handleMouseDown);
+      main.removeEventListener('wheel', handleWheel);
+      main.removeEventListener("mousedown", handleMouseDown);
     };
   }, [nodeGridDiv]);
 
   return (
-    <main className={styles.main}>
-      <div ref={gridRef} className={styles.carousel_grid}>
+    <main ref={mainRef} className={styles.main}>
+      <div  className={styles.carousel_grid + " d1 "}>
         {gridData.grid.map((row, rowIndex) => (
-          <div key={rowIndex} className={styles.grid_cell}>
-            <div className={styles.unselectable}>{row.name} </div>
+          <div style={{ backgroundImage: `url(/${row.img})` }} key={rowIndex} className={styles.grid_cell }>
+            <div className={styles.unselectable}></div>
           </div>
         ))}
       </div>
+      <div  className={styles.carousel_grid + " d2 "}>
+        {gridData.grid.map((row, rowIndex) => (
+          <div style={{ backgroundImage: `url(/${row.img})` }} key={rowIndex} className={styles.grid_cell}>
+            <div className={styles.unselectable}></div>
+          </div>
+        ))}
+      </div>
+      <div  className={styles.carousel_grid + " d3 "}>
+        {gridData.grid.map((row, rowIndex) => (
+          <div style={{ backgroundImage: `url(/${row.img})` }} key={rowIndex} className={styles.grid_cell}>
+            <div className={styles.unselectable}></div>
+          </div>
+        ))}
+      </div>
+      <div  className={styles.carousel_grid + " d4 "}>
+        {gridData.grid.map((row, rowIndex) => (
+          <div style={{ backgroundImage: `url(/${row.img})` }} key={rowIndex} className={styles.grid_cell}>
+            <div className={styles.unselectable}></div>
+          </div>
+        ))}
+      </div>
+      <div  className={styles.carousel_grid + " d5 "}>
+        {gridData.grid.map((row, rowIndex) => (
+          <div style={{ backgroundImage: `url(/${row.img})` }} key={rowIndex} className={styles.grid_cell}>
+            <div className={styles.unselectable}></div>
+          </div>
+        ))}
+      </div>
+      <div  className={styles.carousel_grid + " d6 "}>
+        {gridData.grid.map((row, rowIndex) => (
+          <div style={{ backgroundImage: `url(/${row.img})` }} key={rowIndex} className={styles.grid_cell}>
+            <div className={styles.unselectable}></div>
+          </div>
+        ))}
+      </div>
+      <div  className={styles.carousel_grid + " d7 "}>
+        {gridData.grid.map((row, rowIndex) => (
+          <div style={{ backgroundImage: `url(/${row.img})` }} key={rowIndex} className={styles.grid_cell}>
+            <div className={styles.unselectable}></div>
+          </div>
+        ))}
+      </div>
+      <div  className={styles.carousel_grid + " d8 "}>
+        {gridData.grid.map((row, rowIndex) => (
+          <div style={{ backgroundImage: `url(/${row.img})` }} key={rowIndex} className={styles.grid_cell}>
+            <div className={styles.unselectable}></div>
+          </div>
+        ))}
+      </div>
+      <div  className={styles.carousel_grid + " d9 "}>
+        {gridData.grid.map((row, rowIndex) => (
+          <div style={{ backgroundImage: `url(/${row.img})` }} key={rowIndex} className={styles.grid_cell}>
+            <div className={styles.unselectable}></div>
+          </div>
+        ))}
+      </div> 
     </main>
+    
   );
 }
