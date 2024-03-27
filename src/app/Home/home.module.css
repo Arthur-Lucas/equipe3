@@ -42,28 +42,29 @@
   
 .blueFlower {
     margin-left: 100px;
-    animation: blueFlower 4s linear infinite;
+    animation: blueFlower 12s linear infinite;
 }
 
 .pinkFlower {
-    animation: pinkFlower 4s linear infinite;
+    margin: 0;
+    animation: blueFlower 10s linear infinite;
 }
 
 
   @keyframes shakeAndMoveUp {
-    0%, 100% { transform: translateY(0) translateX(0); }
-    25%, 75% { transform: translateY(-50px) translateX(-3px); }
-    12.5%, 37.5%, 62.5%, 87.5%{ transform: translateY(-50px) translateX(3px); }
-    50% { transform: translateY(-50px) translateX(-3px); }
+    0%, 100% { transform: translateX(0) translateY(0); }
+    25%, 75% { transform: translateX(50px) translateY(-3px); }
+    12.5%, 37.5%, 62.5%, 87.5%{ transform: translateX(50px) translateY(3px); }
+    50% { transform: translateX(50px) translateY(-3px); }
   }
   .rocket {
     margin-top: 30px;
-    margin-right: -150px;
+    margin-right: -10px;
     transition: transform 0.8s ease;
     background: none;
     border: none;
     cursor: pointer;
-    
+
   }
   
   .rocket:hover {
@@ -76,27 +77,14 @@
     }
 
     50% {
-        transform: rotate(20deg);
+        transform: rotate(180deg);
     }
 
     100% {
-        transform: rotate(0deg);
+        transform: rotate(360deg);
     }
 }
 
-@keyframes pinkFlower {
-    0% {
-        transform: rotate(0deg);
-    }
-
-    50% {
-        transform: rotate(20deg);
-    }
-
-    100% {
-        transform: rotate(0deg);
-    }
-}
 
 @keyframes wave {
     0% {

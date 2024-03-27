@@ -11,7 +11,7 @@ import playmobil from "/public/Home/playmobil.png";
 import clint from "/public/Home/clint.png";
 import bowie from "/public/Home/bowie.png";
 import RocketSvg from "./assets/rocket";
-import { useRouter } from 'next/router';
+import { useRouter } from "next/router";
 import Link from "next/link";
 
 export default function HomePage() {
@@ -19,15 +19,17 @@ export default function HomePage() {
     <main className={HomeStyles.main}>
       <div className={HomeStyles.rocket}></div>
       <div className={HomeStyles.flex}>
-        <div className={HomeStyles.pinkFlower}>
-          <PinkFlowerSvg />
+        <div >
+          <div className={HomeStyles.pinkFlower}>
+            <PinkFlowerSvg />
+          </div>
         </div>
-        <div className={HomeStyles.rightflex} >
-          <Link href="/timeline"className={HomeStyles.rocket}>
-          <RocketSvg />
+        <div className={HomeStyles.rightflex}>
+          <Link href="/timeline" className={HomeStyles.rocket}>
+            <RocketSvg />
           </Link>
-          <div className={HomeStyles.blueFlower} >
-          <BlueFlowerSvg />
+          <div className={HomeStyles.blueFlower}>
+            <BlueFlowerSvg />
           </div>
         </div>
       </div>
