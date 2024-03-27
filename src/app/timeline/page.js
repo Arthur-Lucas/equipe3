@@ -2,48 +2,65 @@
 
 import { useEffect, useRef, useState } from "react";
 // import { promises as fs } from "fs";
-import styles from "./page.module.css";
+import styles from "./page.module.scss";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 
 export default function Page() {
-  const mainRef = useRef(null); 
+  const gridRef = useRef(null);
 
   const [gridData, setGridData] = useState({ grid: [] });
   const [closestDiv, setClosestDiv] = useState(null);
-  const [nodeGridDiv, setNodeGridDiv] = useState([]);
-
-  const [bEmpty, setBEmpty] = useState(true);
+  const [nodeGridDiv, setNodeGridDiv] = useState(null);
   useEffect(() => {
     async function fetchData() {
       const JSONData = {
         grid: [
-          { name: "Epoque 1", img: "jpg" },
-          { name: "Epoque 2", img: "jpg" },
-          { name: "Epoque 3", img: "jpg" },
-          { name: "Epoque 4", img: "jpg" },
-          { name: "Epoque 5", img: "jpg" },
-          { name: "Epoque 6", img: "jpg" },
-          { name: "Epoque 7", img: "jpg" },
-          { name: "Epoque 8", img: "jpg" },
-          { name: "Epoque 9", img: "jpg" },
+          { name: "Epoque 1", img: "pinkFloyd.png" },
+          { name: "Epoque 2", img: "bikini.png" },
+          { name: "Epoque 3", img: "operaSydney.png" },
+          { name: "Epoque 4", img: "jaws.png" },
+          { name: "Epoque 5", img: "pinkFloyd.png" },
+          { name: "Epoque 6", img: "bikini.png" },
+          { name: "Epoque 7", img: "operaSydney.png" },
+          { name: "Epoque 8", img: "bikini.png" },
+          { name: "Epoque 9", img: "jaws.png" },
         ],
       };
       setGridData(JSONData);
     }
     fetchData();
   }, []);
+  useEffect(() => {
+    const grid = gridRef.current;
+    
+    const handleWheel = (event) => {
+      event.preventDefault();
+      const deltaY = event.deltaY * 5.5; 
+      const deltaX = event.deltaX * 5.5;
+      gsap.to(grid, {
+        y: "+=" + deltaY,
+        x: "+=" + deltaX,
+        duration: 0.5,
+        ease: "power1.out", 
+      });
+    };
+  
+    grid.addEventListener('wheel', handleWheel, { passive: false });
+  
+    return () => {
+      grid.removeEventListener('wheel', handleWheel);
+    };
+  }, []);
+  useEffect(() => {
+    setNodeGridDiv(gridRef.current.querySelectorAll(`.${styles.grid_cell}`));
+    console.log(
+      gridRef.current.querySelectorAll(`.${styles.grid_cell}`),
+      nodeGridDiv
+    );
+  }, []);
 
   useEffect(() => {
-    // Cet effet sera déclenché chaque fois que nodeGridDiv changera
-    if (nodeGridDiv.length === 0) {
-      // Si nodeGridDiv est vide, mettez à jour nodeGridDiv avec les divs de la grille
-      const divs = gridRef.current.querySelectorAll(`.${styles.grid_cell}`);
-      setNodeGridDiv(Array.from(divs)); // Convertissez NodeList en tableau
-      setBEmpty(false);
-    } else {
-      setBEmpty(true);
-    }
     const grid = gridRef.current;
     let startX = 0;
     let startY = 0;
@@ -52,6 +69,7 @@ export default function Page() {
     const centerX = window.innerWidth / 2;
     const centerY = window.innerHeight / 2;
     let minDistance = Infinity;
+
 
     const handleMouseDown = (event) => {
       document.body.style.cursor = "move";
@@ -64,25 +82,11 @@ export default function Page() {
     const handleMouseMove = (event) => {
       const deltaX = (event.clientX - startX) * 10;
       const deltaY = (event.clientY - startY) * 10;
-      gsap.to(mainRef.current, {
+      gsap.to(grid, {
         x: "+=" + deltaX,
         y: "+=" + deltaY,
         duration: 0.5,
         onComplete: () => {
-          nodeGridDiv.forEach((div) => {
-            const rect = div.getBoundingClientRect();
-            const distance = Math.sqrt(
-              Math.pow(rect.left + rect.width / 2 - centerX, 2) +
-                Math.pow(rect.top + rect.height / 2 - centerY, 2)
-            );
-
-            if (distance < minDistance) {
-              minDistance = distance;
-              setClosestDiv(div);
-              console.log(div);
-            }
-          });
-          console.log(closestDiv);
           if (closestDiv) {
             // console;
             const rect = closestDiv.getBoundingClientRect();
@@ -102,80 +106,22 @@ export default function Page() {
       document.removeEventListener("mouseup", handleMouseUp);
     };
 
-    main.addEventListener("mousedown", handleMouseDown);
+    grid.addEventListener("mousedown", handleMouseDown);
 
     return () => {
-      main.removeEventListener('wheel', handleWheel);
-      main.removeEventListener("mousedown", handleMouseDown);
+      grid.removeEventListener("mousedown", handleMouseDown);
     };
-  }, [nodeGridDiv]);
+  }, []);
 
   return (
-    <main ref={mainRef} className={styles.main}>
-      <div  className={styles.carousel_grid + " d1 "}>
-        {gridData.grid.map((row, rowIndex) => (
-          <div style={{ backgroundImage: `url(/${row.img})` }} key={rowIndex} className={styles.grid_cell }>
-            <div className={styles.unselectable}></div>
-          </div>
-        ))}
-      </div>
-      <div  className={styles.carousel_grid + " d2 "}>
+    <main className={styles.main}>
+      <div ref={gridRef} className={styles.carousel_grid}>
         {gridData.grid.map((row, rowIndex) => (
           <div style={{ backgroundImage: `url(/${row.img})` }} key={rowIndex} className={styles.grid_cell}>
             <div className={styles.unselectable}></div>
           </div>
         ))}
       </div>
-      <div  className={styles.carousel_grid + " d3 "}>
-        {gridData.grid.map((row, rowIndex) => (
-          <div style={{ backgroundImage: `url(/${row.img})` }} key={rowIndex} className={styles.grid_cell}>
-            <div className={styles.unselectable}></div>
-          </div>
-        ))}
-      </div>
-      <div  className={styles.carousel_grid + " d4 "}>
-        {gridData.grid.map((row, rowIndex) => (
-          <div style={{ backgroundImage: `url(/${row.img})` }} key={rowIndex} className={styles.grid_cell}>
-            <div className={styles.unselectable}></div>
-          </div>
-        ))}
-      </div>
-      <div  className={styles.carousel_grid + " d5 "}>
-        {gridData.grid.map((row, rowIndex) => (
-          <div style={{ backgroundImage: `url(/${row.img})` }} key={rowIndex} className={styles.grid_cell}>
-            <div className={styles.unselectable}></div>
-          </div>
-        ))}
-      </div>
-      <div  className={styles.carousel_grid + " d6 "}>
-        {gridData.grid.map((row, rowIndex) => (
-          <div style={{ backgroundImage: `url(/${row.img})` }} key={rowIndex} className={styles.grid_cell}>
-            <div className={styles.unselectable}></div>
-          </div>
-        ))}
-      </div>
-      <div  className={styles.carousel_grid + " d7 "}>
-        {gridData.grid.map((row, rowIndex) => (
-          <div style={{ backgroundImage: `url(/${row.img})` }} key={rowIndex} className={styles.grid_cell}>
-            <div className={styles.unselectable}></div>
-          </div>
-        ))}
-      </div>
-      <div  className={styles.carousel_grid + " d8 "}>
-        {gridData.grid.map((row, rowIndex) => (
-          <div style={{ backgroundImage: `url(/${row.img})` }} key={rowIndex} className={styles.grid_cell}>
-            <div className={styles.unselectable}></div>
-          </div>
-        ))}
-      </div>
-      <div  className={styles.carousel_grid + " d9 "}>
-        {gridData.grid.map((row, rowIndex) => (
-          <div style={{ backgroundImage: `url(/${row.img})` }} key={rowIndex} className={styles.grid_cell}>
-            <div className={styles.unselectable}></div>
-          </div>
-        ))}
-      </div> 
     </main>
-    
   );
 }
