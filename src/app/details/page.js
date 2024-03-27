@@ -1,7 +1,20 @@
+'use client';
+
 import styles from './page.module.css';
 import { gsap } from "gsap";
+import { useGSAP } from '@gsap/react';
+import { useRef } from 'react';
+
+gsap.registerPlugin(useGSAP);
 
 export default function Page() {
+
+  const circle = useRef();
+  const container = useRef();
+
+  useGSAP(()=> {
+    gsap.to("");
+  });
   return (
     <main className={styles.main}>
       <div className={styles.background}></div>
