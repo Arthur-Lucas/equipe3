@@ -3,6 +3,11 @@
   src: url("/fonts/Retosta.otf") format("truetype"); /* Adjust the path and format according to your font file */
 }
 
+@font-face {
+  font-family: "TextMeOne";
+  src: url("/fonts/TextMeOne-Regular.ttf") format("truetype"); /* Adjust the path and format according to your font file */
+}
+
 .main {
   overflow-x: hidden;
 }
@@ -23,13 +28,6 @@
   background-position: center;
 }
 
-/* .image {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-} */
-
 .title {
   font-family: "Retosta", Arial, sans-serif;
   color: #df787a;
@@ -45,6 +43,90 @@
 }
 
 .desc_part {
-  background-color: aliceblue;
+  background-color: #fcf7ee;
   height: 100vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.desc_text {
+  font-family: "TextMeOne", Arial, sans-serif;
+  font-size: 24px;
+  width: 30%;
+  height: 100%;
+  padding-top: 10%;
+}
+
+.desc_content {
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  flex-direction: row;
+  width: 100%;
+  height: 80%;
+}
+
+.floatting_image {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 40%;
+  height: 100%;
+  padding-top: 20vh;
+}
+
+.Group {
+  width: 30%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fragment1,
+.fragment2,
+.fragment3 {
+  /* position: absolute; */
+  /* width: 230px; */
+}
+
+.fragment1 {
+  /* top: 14%;
+  left: 26%; */
+  transform: translate(0px, 450px);
+  width: 230px;
+}
+
+.fragment2 {
+  /* top: 15%;
+  left: 40%; */
+  width: 310px;
+
+  transform: translate(180px, 60px);
+}
+
+.fragment3 {
+  /* top: 45.5%;
+  left: 40%; */
+  width: 310px;
+
+  transform: translate(180px, 0px);
+}
+
+.redFrag {
+  transform: translate(210px, -930px);
+}
+
+.blueFrag {
+  transform: translate(0px, -700px);
+  z-index: 1;
+}
+
+.bottom_text {
+  width: 100%;
+  height: 20%;
 }
