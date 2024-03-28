@@ -27,108 +27,130 @@ export default function Page() {
     gsap.registerPlugin(ScrollTrigger);
 
     gsap.to(headerRef.current, {
-      backgroundSize: "500%",
       //   ease: "none",
       scrollTrigger: {
         trigger: headerRef.current,
-        start: "top top",
+        start: "top+=10 top",
         end: "bottom top ",
         scrub: 0.5,
       },
+      backgroundSize: "500%",
     });
 
     gsap.to(headerTitleRef.current, {
-      fontSize: "190px",
-      ease: "none",
       scrollTrigger: {
         trigger: headerRef.current,
         start: "top top",
         end: "bottom top",
         scrub: 1,
       },
+      fontSize: "190px",
+      ease: "none",
     });
 
-    gsap.to(frag1.current, {
-      transform: "translate(-20px, 470px)",
-      duration: 3, // Durée de l'animation
-      yoyo: true, // L'animation se répète en arrière
-      repeat: -1, // Répéter indéfiniment
-      ease: "power1.inOut", // Fonction d'animation pour un effet plus doux
-    });
+    // gsap.to(frag1.current, {
+    //   transform: "translate(-20px, 470px)",
+    //   duration: 3, // Durée de l'animation
+    //   yoyo: true, // L'animation se répète en arrière
+    //   repeat: -1, // Répéter indéfiniment
+    //   ease: "power1.inOut", // Fonction d'animation pour un effet plus doux
+    // });
 
-    // Animation pour le fragment 2
-    gsap.to(frag2.current, {
-      transform: "translate(180px, 70px)",
-      duration: 3,
-      yoyo: true,
-      repeat: -1,
-      ease: "power1.inOut",
-    });
+    // // Animation pour le fragment 2
+    // gsap.to(frag2.current, {
+    //   transform: "translate(180px, 70px)",
+    //   duration: 3,
+    //   yoyo: true,
+    //   repeat: -1,
+    //   ease: "power1.inOut",
+    // });
 
-    // Animation pour le fragment 3
-    gsap.to(frag3.current, {
-      transform: "translate(200px, 30px)",
-      duration: 3,
-      yoyo: true,
-      repeat: -1,
-      ease: "power1.inOut",
-    });
+    // // Animation pour le fragment 3
+    // gsap.to(frag3.current, {
+    //   transform: "translate(200px, 30px)",
+    //   duration: 3,
+    //   yoyo: true,
+    //   repeat: -1,
+    //   ease: "power1.inOut",
+    // });
 
-    gsap.to(frag4.current, {
-      transform: "translate(-20px, -710px)",
-      duration: 3,
-      yoyo: true,
-      repeat: -1,
-      ease: "power1.inOut",
-    });
+    // gsap.to(frag4.current, {
+    //   transform: "translate(-20px, -710px)",
+    //   duration: 3,
+    //   yoyo: true,
+    //   repeat: -1,
+    //   ease: "power1.inOut",
+    // });
 
-    gsap.to(frag5.current, {
-      transform: "translate(240px, -930px)",
-      duration: 3,
-      yoyo: true,
-      repeat: -1,
-      ease: "power1.inOut",
-    });
+    // gsap.to(frag5.current, {
+    //   transform: "translate(240px, -930px)",
+    //   duration: 3,
+    //   yoyo: true,
+    //   repeat: -1,
+    //   ease: "power1.inOut",
+    // });
 
-    gsap.to(frag6.current, {
-      transform: "translate(-45px, 455px)",
-      duration: 3,
-      yoyo: true,
-      repeat: -1,
-      ease: "power1.inOut",
-    });
+    // gsap.to(frag6.current, {
+    //   transform: "translate(-45px, 455px)",
+    //   duration: 3,
+    //   yoyo: true,
+    //   repeat: -1,
+    //   ease: "power1.inOut",
+    // });
 
-    gsap.to(frag7.current, {
-      transform: "translate(50px, 70px)",
-      duration: 4,
-      yoyo: true,
-      repeat: -1,
-      ease: "power1.inOut",
-    });
+    // gsap.to(frag7.current, {
+    //   transform: "translate(50px, 70px)",
+    //   duration: 4,
+    //   yoyo: true,
+    //   repeat: -1,
+    //   ease: "power1.inOut",
+    // });
 
-    gsap.to(frag8.current, {
-      transform: "translate(10px, -330px)",
-      duration: 4,
-      yoyo: true,
-      repeat: -1,
-      ease: "power1.inOut",
-    });
+    // gsap.to(frag8.current, {
+    //   transform: "translate(10px, -330px)",
+    //   duration: 4,
+    //   yoyo: true,
+    //   repeat: -1,
+    //   ease: "power1.inOut",
+    // });
 
     gsap.to(date.current, {
-      top: "0",
-      right: "47%",
-      fontSize: "32px",
-      duration: 0.5,
-      ease: "none",
       scrollTrigger: {
         trigger: headerRef.current,
         start: "top top",
-        end: "bottom top",
+        end: "center top",
         // markers: true,
         // pin: true,
         scrub: 1,
       },
+      top: "10",
+      fontSize: "32px",
+      duration: 0.5,
+      ease: "ease-in-out",
     });
+
+
+    // let date = gsap.timeline({
+    //   scrollTrigger: {
+    //     trigger: headerRef.current,
+    //     start: "top top",
+    //     end: () => window.innerHeight * 1.2,
+    //     scrub: 0.6,
+    //     markers: true,
+    //   }
+    // });
+    // date.fromTo(date.current, {
+    //   bottom: '60vw',
+    //   yPercent: -50,
+    //   scale: 1.7,
+    // }, {
+    //   top: '2vw',
+    //   yPercent: 0,
+    //   scale: 1,
+    //   duration: 0.8,
+    // });
+
+
 
     gsap.to(footerText.current, {
       transform: "translate(90%, 0px)",
@@ -147,6 +169,11 @@ export default function Page() {
 
   return (
     <main className={styles.main}>
+      <nav className={styles.nav}>
+        <h1 ref={date} className={styles.date}>
+            <span><span>1968</span></span> 
+          </h1>
+      </nav>
       <div ref={headerRef} id="header" className={styles.header}>
         {/* <svg width="30%" height="200px" viewBox="-4 -1 38 28">
           <polygon
@@ -158,9 +185,7 @@ export default function Page() {
         </svg> */}
         {/* <span className={styles.span_hide}></span> */}
         {/* <img className={styles.Logo} src="/Equilateral.svg" /> */}
-        <h1 ref={date} className={styles.date}>
-          1968
-        </h1>
+        
         <h2 ref={headerTitleRef} id="headerTitle" className={styles.title}>
           PINK FLOYD
         </h2>
@@ -203,11 +228,7 @@ export default function Page() {
             nulla at. Ut faucibus pulvinar elementum integer enim neque volutpat
             ac. Suspendisse potenti nullam ac tortor vitae. Vitae tortor
             condimentum lacinia quis vel eros donec ac. Sit amet porttitor eget
-            dolor morbi non arcu. Turpis egestas pretium aenean pharetra magna
-            ac placerat. Sed vulputate mi sit amet mauris commodo. Faucibus in
-            ornare quam viverra orci. Interdum posuere lorem ipsum dolor sit
-            amet consectetur adipiscing. Faucibus in ornare quam viverra orci.
-            Elementum eu facilisis sed odio morbi quis commodo.
+            dolor morbi non arcu.
           </div>
 
           <div className={styles.Group}>
