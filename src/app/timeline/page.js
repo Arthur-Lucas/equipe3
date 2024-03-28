@@ -5,8 +5,8 @@ import styles from "./page.module.scss";
 import { gsap } from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import clsx from "clsx";
+import Link from "next/link";
 gsap.registerPlugin(ScrollTrigger);
-import { useGSAP } from "@gsap/react";
 
 export default function Page() {
   const gridRef1 = useRef(null);
@@ -152,80 +152,6 @@ export default function Page() {
 
   }, []);
 
-  useEffect(() => {
-    setNodeGridDiv(gridRef.current.querySelectorAll(`.${styles.grid_cell}`));
-    console.log(
-      gridRef.current.querySelectorAll(`.${styles.grid_cell}`),
-      nodeGridDiv
-    );
-  }, []);
-
-  useEffect(() => {
-    const grid = gridRef.current;
-    let startX = 0;
-    let startY = 0;
-
-    // ancrer div au centre de la page
-    const centerX = window.innerWidth / 2;
-    const centerY = window.innerHeight / 2;
-    let minDistance = Infinity;
-
-    const handleMouseDown = (event) => {
-      document.body.style.cursor = "move";
-      startX = event.clientX;
-      startY = event.clientY;
-      document.addEventListener("mousemove", handleMouseMove);
-      document.addEventListener("mouseup", handleMouseUp);
-    };
-
-    const handleMouseMove = (event) => {
-      const deltaX = (event.clientX - startX) * 10;
-      const deltaY = (event.clientY - startY) * 10;
-      gsap.to(grid, {
-        x: "+=" + deltaX,
-        y: "+=" + deltaY,
-        duration: 0.5,
-        onComplete: () => {
-          nodeGridDiv.forEach((div) => {
-            const rect = div.getBoundingClientRect();
-            const distance = Math.sqrt(
-              Math.pow(rect.left + rect.width / 2 - centerX, 2) +
-                Math.pow(rect.top + rect.height / 2 - centerY, 2)
-            );
-
-            if (distance < minDistance) {
-              minDistance = distance;
-              setClosestDiv(div);
-              console.log(div);
-            }
-          });
-          console.log(closestDiv);
-          if (closestDiv) {
-            // console;
-            const rect = closestDiv.getBoundingClientRect();
-            const offsetX = centerX - (rect.left + rect.width / 2);
-            const offsetY = centerY - (rect.top + rect.height / 2);
-            gsap.to(closestDiv, { x: offsetX, y: offsetY, duration: 0.5 });
-          }
-        },
-      });
-      startX = event.clientX;
-      startY = event.clientY;
-    };
-
-    const handleMouseUp = () => {
-      document.body.style.cursor = "default";
-      document.removeEventListener("mousemove", handleMouseMove);
-      document.removeEventListener("mouseup", handleMouseUp);
-    };
-
-    grid.addEventListener("mousedown", handleMouseDown);
-
-    return () => {
-      grid.removeEventListener("mousedown", handleMouseDown);
-    };
-  }, [nodeGridDiv]);
-
   return (
     <main className={styles.main} id = "main">
       <div className={styles.gradiant}/>
@@ -234,12 +160,17 @@ export default function Page() {
       <div ref={gridRef1} className={styles.carousel_grid}>
         {gridData1.grid1.map((row, rowIndex) => (
           <div className={styles.imagesSlice}>
-            <div style={{ backgroundImage: `url(/${row.img})` }} key={rowIndex} className={clsx(styles.grid_cell , "grid_cell" , styles.gcone, "gcone")} >
-              <div className={styles.unselectable}></div>
-            </div>
-            <div style={{ backgroundImage: `url(/${row.img})` }} key={rowIndex} className={clsx(styles.grid_cell , "grid_cell" , styles.gctwo, "gctwo")} >
-              <div className={styles.unselectable}></div>
-            </div>
+          <Link href="/details">
+             
+              <div style={{ backgroundImage: `url(/${row.img})` }} key={rowIndex} className={clsx(styles.grid_cell , "grid_cell" , styles.gcone, "gcone")} >
+                <div className={styles.unselectable}></div>
+              </div>
+              </Link>
+              <Link href="/details">
+              <div style={{ backgroundImage: `url(/${row.img})` }} key={rowIndex} className={clsx(styles.grid_cell , "grid_cell" , styles.gctwo, "gctwo")} >
+                <div className={styles.unselectable}></div>
+              </div>
+          </Link>
           </div>
         ))}
       </div>

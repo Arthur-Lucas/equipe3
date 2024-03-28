@@ -48,71 +48,71 @@ export default function Page() {
       ease: "none",
     });
 
-    // gsap.to(frag1.current, {
-    //   transform: "translate(-20px, 470px)",
-    //   duration: 3, // Durée de l'animation
-    //   yoyo: true, // L'animation se répète en arrière
-    //   repeat: -1, // Répéter indéfiniment
-    //   ease: "power1.inOut", // Fonction d'animation pour un effet plus doux
-    // });
+    gsap.to(frag1.current, {
+      transform: "translate(12%, 168%)",
+      duration: 3, // Durée de l'animation
+      yoyo: true, // L'animation se répète en arrière
+      repeat: -1, // Répéter indéfiniment
+      ease: "power1.inOut", // Fonction d'animation pour un effet plus doux
+    });
 
     // // Animation pour le fragment 2
-    // gsap.to(frag2.current, {
-    //   transform: "translate(180px, 70px)",
-    //   duration: 3,
-    //   yoyo: true,
-    //   repeat: -1,
-    //   ease: "power1.inOut",
-    // });
+    gsap.to(frag2.current, {
+      transform: "translate(76%, 68%)",
+      duration: 3,
+      yoyo: true,
+      repeat: -1,
+      ease: "power1.inOut",
+    });
 
     // // Animation pour le fragment 3
-    // gsap.to(frag3.current, {
-    //   transform: "translate(200px, 30px)",
-    //   duration: 3,
-    //   yoyo: true,
-    //   repeat: -1,
-    //   ease: "power1.inOut",
-    // });
+    gsap.to(frag3.current, {
+      transform: "translate(80%, 118%)",
+      duration: 3,
+      yoyo: true,
+      repeat: -1,
+      ease: "power1.inOut",
+    });
 
-    // gsap.to(frag4.current, {
-    //   transform: "translate(-20px, -710px)",
-    //   duration: 3,
-    //   yoyo: true,
-    //   repeat: -1,
-    //   ease: "power1.inOut",
-    // });
+    gsap.to(frag4.current, {
+      transform: "translate(15%, -145%)",
+      duration: 3,
+      yoyo: true,
+      repeat: -1,
+      ease: "power1.inOut",
+    });
 
-    // gsap.to(frag5.current, {
-    //   transform: "translate(240px, -930px)",
-    //   duration: 3,
-    //   yoyo: true,
-    //   repeat: -1,
-    //   ease: "power1.inOut",
-    // });
+    gsap.to(frag5.current, {
+      transform: "translate(102%, -200%)",
+      duration: 3,
+      yoyo: true,
+      repeat: -1,
+      ease: "power1.inOut",
+    });
 
-    // gsap.to(frag6.current, {
-    //   transform: "translate(-45px, 455px)",
-    //   duration: 3,
-    //   yoyo: true,
-    //   repeat: -1,
-    //   ease: "power1.inOut",
-    // });
+    gsap.to(frag6.current, {
+      transform: "translate(-10%, 130%)",
+      duration: 3,
+      yoyo: true,
+      repeat: -1,
+      ease: "power1.inOut",
+    });
 
-    // gsap.to(frag7.current, {
-    //   transform: "translate(50px, 70px)",
-    //   duration: 4,
-    //   yoyo: true,
-    //   repeat: -1,
-    //   ease: "power1.inOut",
-    // });
+    gsap.to(frag7.current, {
+      transform: "translate(37%, 3%)",
+      duration: 4,
+      yoyo: true,
+      repeat: -1,
+      ease: "power1.inOut",
+    });
 
-    // gsap.to(frag8.current, {
-    //   transform: "translate(10px, -330px)",
-    //   duration: 4,
-    //   yoyo: true,
-    //   repeat: -1,
-    //   ease: "power1.inOut",
-    // });
+    gsap.to(frag8.current, {
+      transform: "translate(16%, -67%)",
+      duration: 4,
+      yoyo: true,
+      repeat: -1,
+      ease: "power1.inOut",
+    });
 
     gsap.to(date.current, {
       scrollTrigger: {
@@ -128,7 +128,6 @@ export default function Page() {
       duration: 0.5,
       ease: "ease-in-out",
     });
-
 
     // let date = gsap.timeline({
     //   scrollTrigger: {
@@ -150,8 +149,6 @@ export default function Page() {
     //   duration: 0.8,
     // });
 
-
-
     gsap.to(footerText.current, {
       transform: "translate(90%, 0px)",
       duration: 5,
@@ -171,8 +168,10 @@ export default function Page() {
     <main className={styles.main}>
       <nav className={styles.nav}>
         <h1 ref={date} className={styles.date}>
-            <span><span>1968</span></span> 
-          </h1>
+          <span>
+            <span>1968</span>
+          </span>
+        </h1>
       </nav>
       <div ref={headerRef} id="header" className={styles.header}>
         {/* <svg width="30%" height="200px" viewBox="-4 -1 38 28">
@@ -185,7 +184,7 @@ export default function Page() {
         </svg> */}
         {/* <span className={styles.span_hide}></span> */}
         {/* <img className={styles.Logo} src="/Equilateral.svg" /> */}
-        
+
         <h2 ref={headerTitleRef} id="headerTitle" className={styles.title}>
           PINK FLOYD
         </h2>

@@ -177,17 +177,19 @@
 }
 
 .team {
-  transform: translate(11%, -130%);
+  transform: translate(11%, -70%);
   width: 60%;
 }
 
-.redFrag2 {transform: translate(7%, 29%);
+.redFrag2 {
+  transform: translate(7%, 119%);
+
   width: 31%;
 }
 
 .blueFrag2 {
   width: 51%;
-  transform: translate(33%, -71%);
+  transform: translate(33%, 19%);
 }
 
 @keyframes spanFadeIn {
