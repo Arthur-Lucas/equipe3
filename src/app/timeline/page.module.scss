@@ -1,0 +1,77 @@
+  .main {
+    padding: 20dvh 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    // background-color: #CDDDEE;
+    overflow-x: hidden;
+    flex-direction: column;
+    gap:80px;
+  }
+  .blur{
+    background-image: url('/bikini.png'); 
+    z-index: 1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    filter: blur(80px);
+    background-size: cover;
+  }
+  .carousel_grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 80px;
+    width: 200vw;
+    height: 200vh;
+    z-index: 2;
+  }
+  .imagesSlice{
+    position: relative;
+    border-radius: 10px;
+  }
+  .grid_cell {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;    
+  }
+  .gcone{
+    clip-path:   polygon(0% 0, 100% 0%, 0 100%);
+    top: 0;
+    left: 0;
+  }
+  .gctwo{
+    clip-path: polygon(0% 100%, 100% 100%, 100% 0%);    
+    bottom: 0;
+    right: 0;
+  }
+  .unselectable {
+    user-select: none;
+  }
+.h2{
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 12rem;
+  font-family: poppins;
+  font-style: italic;
+  z-index: 10;
+}
+// .gradiant{
+//   position: fixed;
+//   top: 0;
+//   left: 0;
+//   width: 100vw;
+//   height: 100dvh;
+//   background: linear-gradient(0, #000000 , transparent, #000000);
+//   z-index: 5;
+// }
