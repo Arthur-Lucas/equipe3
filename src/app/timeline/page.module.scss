@@ -1,70 +1,77 @@
-.main {
+  .main {
+    padding: 20dvh 0;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: rgb(249, 205, 205);
-    overflow: hidden;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
+    // background-color: #CDDDEE;
+    overflow-x: hidden;
+    flex-direction: column;
+    gap:80px;
+  }
+  .blur{
+    background-image: url('/bikini.png'); 
+    z-index: 1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    filter: blur(80px);
+    background-size: cover;
   }
   .carousel_grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
-    gap: 20px;
-    width: 90vw;
-    height: 90vh;
-    transform: rotate(-30deg);
+    gap: 80px;
+    width: 200vw;
+    height: 200vh;
+    z-index: 2;
   }
-  .d1{
-    grid-row: 1/2;
-    grid-column: 1/2;
+  .imagesSlice{
+    position: relative;
+    border-radius: 10px;
   }
-  .d2{
-    grid-row: 1/2;
-    grid-column: 2/3;
-  }
-  .d3{
-    grid-row: 1/2;
-    grid-column: 3/4;
-  }
-  .d4{
-    grid-row: 2/3;
-    grid-column: 1/2;
-  }
-  .d5{
-    grid-row: 2/3;
-    grid-column: 2/3;
-  }
-  .d6{
-    grid-row: 2/3;
-    grid-column: 3/4;
-  }
-  .d7{
-    grid-row: 3/4;
-    grid-column: 1/2;
-  }
-  .d8{
-    grid-row: 3/4;
-    grid-column: 2/3;
-  }
-  .d9{
-    grid-row: 3/4;
-    grid-column: 3/4;
-  }
-  
   .grid_cell {
-    background-color: grey;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     background-repeat: no-repeat;
     background-size: cover;
-    position: relative;
+    background-position: center;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;    
   }
-  
+  .gcone{
+    clip-path:   polygon(0% 0, 100% 0%, 0 100%);
+    top: 0;
+    left: 0;
+  }
+  .gctwo{
+    clip-path: polygon(0% 100%, 100% 100%, 100% 0%);    
+    bottom: 0;
+    right: 0;
+  }
   .unselectable {
     user-select: none;
   }
-  
+.h2{
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 12rem;
+  font-family: poppins;
+  font-style: italic;
+  z-index: 10;
+}
+// .gradiant{
+//   position: fixed;
+//   top: 0;
+//   left: 0;
+//   width: 100vw;
+//   height: 100dvh;
+//   background: linear-gradient(0, #000000 , transparent, #000000);
+//   z-index: 5;
+// }
