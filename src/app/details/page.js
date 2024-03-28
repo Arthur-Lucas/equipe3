@@ -16,6 +16,12 @@ export default function Page() {
   const frag3 = useRef(null);
   const frag4 = useRef(null);
   const frag5 = useRef(null);
+  const frag6 = useRef(null);
+  const frag7 = useRef(null);
+  const frag8 = useRef(null);
+  const date = useRef(null);
+  const footerText = useRef(null);
+  const footer = useRef(null);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -83,14 +89,81 @@ export default function Page() {
       repeat: -1,
       ease: "power1.inOut",
     });
+
+    gsap.to(frag6.current, {
+      transform: "translate(-45px, 455px)",
+      duration: 3,
+      yoyo: true,
+      repeat: -1,
+      ease: "power1.inOut",
+    });
+
+    gsap.to(frag7.current, {
+      transform: "translate(50px, 70px)",
+      duration: 4,
+      yoyo: true,
+      repeat: -1,
+      ease: "power1.inOut",
+    });
+
+    gsap.to(frag8.current, {
+      transform: "translate(10px, -330px)",
+      duration: 4,
+      yoyo: true,
+      repeat: -1,
+      ease: "power1.inOut",
+    });
+
+    gsap.to(date.current, {
+      top: "0",
+      right: "47%",
+      fontSize: "32px",
+      duration: 0.5,
+      ease: "none",
+      scrollTrigger: {
+        trigger: headerRef.current,
+        start: "top top",
+        end: "bottom top",
+        // markers: true,
+        // pin: true,
+        scrub: 1,
+      },
+    });
+
+    gsap.to(footerText.current, {
+      transform: "translate(90%, 0px)",
+      duration: 5,
+      ease: "none",
+      scrollTrigger: {
+        trigger: footer.current,
+        start: "top bottom",
+        end: "bottom bottom",
+        // markers: true,
+        // pin: true,
+        scrub: 1,
+      },
+    });
   }, []);
 
   return (
     <main className={styles.main}>
       <div ref={headerRef} id="header" className={styles.header}>
-        <h1 ref={headerTitleRef} id="headerTitle" className={styles.title}>
-          PINK FLOYD
+        {/* <svg width="30%" height="200px" viewBox="-4 -1 38 28">
+          <polygon
+            fill="transparent"
+            stroke="#FFFF"
+            stroke-width="2"
+            points="15,0 30,30 0,30"
+          ></polygon>
+        </svg> */}
+        {/* <span className={styles.span_hide}></span> */}
+        {/* <img className={styles.Logo} src="/Equilateral.svg" /> */}
+        <h1 ref={date} className={styles.date}>
+          1968
         </h1>
+        <h2 ref={headerTitleRef} id="headerTitle" className={styles.title}>
+          PINK FLOYD
+        </h2>
         {/* <img id="headerImg" className={styles.image} src="/PinkFloyd.svg" /> */}
       </div>
       <div className={styles.desc_part}>
@@ -138,10 +211,24 @@ export default function Page() {
           </div>
 
           <div className={styles.Group}>
-            <img src="/Team.png" />
+            <img
+              ref={frag6}
+              className={styles.redFrag2}
+              src="/RedTriangle2.png"
+            />
+            <img
+              ref={frag7}
+              className={styles.blueFrag2}
+              src="/BlueTriangle2.png"
+            />
+            <img ref={frag8} className={styles.team} src="/Team.png" />
           </div>
         </div>
-        <div className={styles.bottom_text}></div>
+        <div ref={footer} className={styles.bottom_text}>
+          <p ref={footerText} className={styles.footer}>
+            Pink Floyd - 1968 Pink Floyd - 1968
+          </p>
+        </div>
       </div>
     </main>
   );

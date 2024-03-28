@@ -8,6 +8,11 @@
   src: url("/fonts/TextMeOne-Regular.ttf") format("truetype"); /* Adjust the path and format according to your font file */
 }
 
+@font-face {
+  font-family: "Poppins";
+  src: url("/fonts/Poppins-BlackItalic.ttf") format("truetype"); /* Adjust the path and format according to your font file */
+}
+
 .main {
   overflow-x: hidden;
 }
@@ -15,31 +20,55 @@
 .header {
   background-color: black;
   display: flex;
-  /* justify-content: center; */
+  justify-content: center;
   align-items: center;
   height: 100vh;
   max-height: 100vh;
   width: 100vw;
   position: relative;
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
   background-image: url("/PinkFloyd.svg");
   background-size: 100%;
   background-repeat: no-repeat;
   background-position: center;
+  /* d */
+}
+
+.Logo {
+  width: 30%;
+}
+
+.date {
+  /* color: #df787a; */
+  position: absolute;
+  transform-origin: center;
+  font-family: "Poppins", Arial, sans-serif;
+  letter-spacing: 10px;
+  top: 60%;
+  right: 40%;
+  font-size: 12rem;
+  /* border: 1px solid red; */
+  text-shadow: 2px 0 #df787a, -2px 0 #df787a, 0 2px #df787a, 0 -2px #df787a,
+    1px 1px #df787a, -1px -1px #df787a, 1px -1px #df787a, -1px 1px #df787a;
+  z-index: 5;
+  animation: slideup 2s;
 }
 
 .title {
   font-family: "Retosta", Arial, sans-serif;
   color: #df787a;
-  font-size: 90px;
+  font-size: 5rem;
   letter-spacing: 30px;
   text-transform: capitalize;
   position: absolute;
   bottom: 0%;
-  left: 52%;
+  left: 50%;
   text-wrap: nowrap;
   transform: translate(-50%, -50%);
   /* transform: translate(-10vw); */
+  z-index: 5;
+
+  animation: slideupTitle 2s;
 }
 
 .desc_part {
@@ -85,13 +114,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.fragment1,
-.fragment2,
-.fragment3 {
-  /* position: absolute; */
-  /* width: 230px; */
+  flex-direction: column;
 }
 
 .fragment1 {
@@ -128,5 +151,47 @@
 
 .bottom_text {
   width: 100%;
+
   height: 20%;
+  font-family: "Retosta", Arial, sans-serif;
+  font-size: 200px;
+}
+
+.footer {
+  transform: translate(-60%, 0px);
+  text-wrap: nowrap;
+}
+
+.team {
+  transform: translate(0, -350px);
+}
+
+.redFrag2 {
+  transform: translate(-36px, 475px);
+}
+
+.blueFrag2 {
+  transform: translate(40px, 100px);
+}
+
+@keyframes slideup {
+  from {
+    opacity: 0;
+    top: 70%;
+  }
+  to {
+    opacity: 1;
+    top: 60%;
+  }
+}
+
+@keyframes slideupTitle {
+  from {
+    opacity: 0;
+    bottom: -10%;
+  }
+  to {
+    opacity: 1;
+    bottom: 0%;
+  }
 }
