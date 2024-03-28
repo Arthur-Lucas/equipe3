@@ -38,7 +38,7 @@
   width: 30%;
 }
 
-.nav{
+.nav {
   position: fixed;
   height: 20vh;
   width: 100%;
@@ -74,7 +74,7 @@
 
 .title {
   /* font-family: "Retosta", Arial, sans-serif; */
-  font-family: "Poppins",  sans-serif;
+  font-family: "Poppins", sans-serif;
   color: #df787a;
   font-size: 5rem;
   letter-spacing: 30px;
@@ -148,19 +148,19 @@
 }
 
 .fragment3 {
-  width: 40%;    
+  width: 40%;
   transform: translate(72%, 106%);
 }
 
 .redFrag {
   transform: translate(95%, -194%);
-    width: 35%;
+  width: 35%;
 }
 
 .blueFrag {
   transform: translate(20%, -142%);
-    width: 50%;
-    z-index: 1;
+  width: 50%;
+  z-index: 1;
 }
 
 .bottom_text {
@@ -177,17 +177,19 @@
 }
 
 .team {
-  transform: translate(11%, -130%);
+  transform: translate(11%, -70%);
   width: 60%;
 }
 
-.redFrag2 {transform: translate(7%, 29%);
+.redFrag2 {
+  transform: translate(7%, 119%);
+
   width: 31%;
 }
 
 .blueFrag2 {
   width: 51%;
-  transform: translate(33%, -71%);
+  transform: translate(33%, 19%);
 }
 
 @keyframes spanFadeIn {
